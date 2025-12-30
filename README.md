@@ -1,3 +1,14 @@
+---
+title: Web Todo
+emoji: ✅
+colorFrom: blue
+colorTo: purple
+sdk: docker
+pinned: false
+license: mit
+app_port: 7860
+---
+
 # Todo Full-Stack Application
 
 A modern, full-stack todo application with user authentication and persistent task management.
