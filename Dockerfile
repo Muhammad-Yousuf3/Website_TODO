@@ -58,3 +58,4 @@ USER user
 
 # Start services
 CMD ["/app/start.sh"]
+
