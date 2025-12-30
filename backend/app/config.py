@@ -49,11 +49,18 @@ class Settings:
         "http://localhost:3000"
     )
 
-    # CORS
+    # CORS - supports multiple origins for dev and production
     FRONTEND_URL: str = os.getenv(
         "BETTER_AUTH_URL",
         "http://localhost:3000"
     )
+
+    # Additional allowed origins (comma-separated)
+    ALLOWED_ORIGINS: list = [
+        origin.strip()
+        for origin in os.getenv("ALLOWED_ORIGINS", "").split(",")
+        if origin.strip()
+    ]
 
 
 @lru_cache()
