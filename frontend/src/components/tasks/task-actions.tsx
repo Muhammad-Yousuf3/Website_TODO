@@ -2,15 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-
-interface Task {
-  id: number;
-  title: string;
-  due_date: string | null;
-  status: string;
-  created_at: string;
-  updated_at: string;
-}
+import { Task } from "@/types/task";
 
 interface TaskActionsProps {
   task: Task;

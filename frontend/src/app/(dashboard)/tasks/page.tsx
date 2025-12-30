@@ -5,15 +5,7 @@ import { apiClient } from "@/lib/api-client";
 import { TaskForm } from "@/components/tasks/task-form";
 import { TaskList } from "@/components/tasks/task-list";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-
-interface Task {
-  id: number;
-  title: string;
-  due_date: string | null;
-  status: string;
-  created_at: string;
-  updated_at: string;
-}
+import { Task } from "@/types/task";
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
