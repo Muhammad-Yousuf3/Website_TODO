@@ -44,7 +44,8 @@ export function LoginForm() {
         return;
       }
 
-      router.push(callbackUrl);
+      // Use hard redirect to ensure cookies are sent with the request
+      window.location.href = callbackUrl;
     } catch (err) {
       setError("An unexpected error occurred");
       console.error(err);

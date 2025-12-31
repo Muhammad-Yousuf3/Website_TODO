@@ -55,7 +55,8 @@ export function RegisterForm() {
         return;
       }
 
-      router.push("/tasks");
+      // Use hard redirect to ensure cookies are sent with the request
+      window.location.href = "/tasks";
     } catch (err) {
       setError("An unexpected error occurred");
       console.error(err);
