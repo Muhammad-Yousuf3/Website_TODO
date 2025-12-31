@@ -11,8 +11,20 @@ const pool = new Pool({
   },
 });
 
+// Get the base URL for the app
+const baseURL = process.env.BETTER_AUTH_URL ||
+  process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` :
+  "http://localhost:3000";
+
 export const auth = betterAuth({
+  baseURL,
   database: pool,
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://website-todo-phi.vercel.app",
+    process.env.BETTER_AUTH_URL || "",
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "",
+  ].filter(Boolean),
   emailAndPassword: {
     enabled: true,
   },
