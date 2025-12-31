@@ -21,8 +21,18 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Check for auth session cookie
-  const sessionCookie = request.cookies.get("better-auth.session_token");
+  // Check for any Better Auth session cookie (handles different naming conventions)
+  const allCookies = request.cookies.getAll();
+  const sessionCookie = allCookies.find(
+    (cookie) =>
+      cookie.name === "better-auth.session_token" ||
+      cookie.name === "better-auth_session_token" ||
+      cookie.name.includes("session")
+  );
+
+  // Log cookies for debugging (check Vercel Function Logs)
+  console.log("[Middleware] Path:", pathname);
+  console.log("[Middleware] Cookies:", allCookies.map(c => c.name).join(", ") || "none");
 
   // If no session and trying to access protected route, redirect to login
   if (!sessionCookie && pathname !== "/") {

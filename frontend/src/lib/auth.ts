@@ -11,10 +11,11 @@ const pool = new Pool({
   },
 });
 
-// Get the base URL for the app
+// Get the base URL for the app (fix operator precedence)
 const baseURL = process.env.BETTER_AUTH_URL ||
-  process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` :
-  "http://localhost:3000";
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+const isProduction = process.env.NODE_ENV === "production";
 
 export const auth = betterAuth({
   baseURL,
@@ -25,6 +26,16 @@ export const auth = betterAuth({
     process.env.BETTER_AUTH_URL || "",
     process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "",
   ].filter(Boolean),
+  advanced: {
+    cookiePrefix: "better-auth",
+    useSecureCookies: isProduction,
+  },
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 60 * 5, // 5 minutes
+    },
+  },
   emailAndPassword: {
     enabled: true,
   },
