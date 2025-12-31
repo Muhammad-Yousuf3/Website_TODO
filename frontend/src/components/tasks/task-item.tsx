@@ -134,7 +134,7 @@ export function TaskItem({ task, onToggleComplete, onEdit, onDelete }: TaskItemP
         )}
       </div>
 
-      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+      <div className="flex-shrink-0 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
         <TaskActions
           task={task}
           onEdit={onEdit}
